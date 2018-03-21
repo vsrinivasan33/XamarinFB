@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using Firebase.DynamicLinks;
 using Foundation;
@@ -20,7 +19,7 @@ namespace XamarinFB.iOS
             AnimationViewRenderer.Init();
             if (Firebase.Core.Options.DefaultInstance != null)
             {
-                Firebase.Core.Options.DefaultInstance.DeepLinkUrlScheme = "xamarinfb";
+                Firebase.Core.Options.DefaultInstance.DeepLinkUrlScheme = Constants.FirebaseDeepLinkName;
                 Firebase.Core.App.Configure();
             } 
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
@@ -36,21 +35,18 @@ namespace XamarinFB.iOS
         // Handle Custom Url Schemes for iOS 8 or older
         public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
         {
-            Console.WriteLine("I'm handling a link through the OpenUrl method.");
+            Console.WriteLine($"OpenUrl Link {url.AbsoluteString}");
 
             var dynamicLink = DynamicLinks.SharedInstance?.FromCustomSchemeUrl(url);
 
             if (dynamicLink == null)
                 return false;
-            var link = dynamicLink.Url?.AbsoluteString.Split(new string[] { "https://vinod.com.au?welcome=" }, StringSplitOptions.None).LastOrDefault();
+            var link = dynamicLink.Url?.AbsoluteString.Split(new string[] { Constants.FirebaseDeepLinkUrl }, StringSplitOptions.None).LastOrDefault();
             if (!string.IsNullOrWhiteSpace(link))
             {
                 var welcomeString = link.Split(new char[] { '&' }).FirstOrDefault();
-                Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, "Celebrate", welcomeString);
-            }
-            //Xamarin.Forms.Application.Current.MainPage.DisplayAlert("New App - Dynamic Link", provider, "OK");
-            // Handle the deep link. For example, show the deep-linked content or
-            // apply a promotional offer to the user's account.
+                Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, Constants.Welcome, welcomeString);
+            }           
             return true;
         } 
 
@@ -63,14 +59,11 @@ namespace XamarinFB.iOS
                     return;
                 }
 
-                var link = dynamicLink.Url.AbsoluteString.Split(new string[] { "https://healthnow.io?" }, StringSplitOptions.None).LastOrDefault();
+                var link = dynamicLink.Url.AbsoluteString.Split(new string[] { Constants.FirebaseDeepLinkUrl }, StringSplitOptions.None).LastOrDefault();
                 var provider = link.Split(new char[] { '&' }).FirstOrDefault();
 
-                Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, "Celebrate", provider);
-                //Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Dynamic Link Received", provider, "OK");
-
-                Console.WriteLine("{0}]", string.Join(", ", link));
-                // Handle Universal Link
+                Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, Constants.Welcome, provider);
+                Console.WriteLine("{0}]", string.Join(", ", link));               
             });
         } 
     }

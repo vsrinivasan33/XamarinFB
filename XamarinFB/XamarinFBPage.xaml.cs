@@ -11,7 +11,7 @@ namespace XamarinFB
 
             this.BindingContext = new MainPageViewModel();
 
-            MessagingCenter.Subscribe<Application, string>(this, "Celebrate", (sender, payload) =>
+            MessagingCenter.Subscribe<Application, string>(this, Constants.Welcome, (sender, payload) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {

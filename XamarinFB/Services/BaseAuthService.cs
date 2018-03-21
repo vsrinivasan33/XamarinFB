@@ -6,9 +6,7 @@ using XamarinFB.Interface;
 namespace XamarinFB.Services
 {
     public abstract class BaseAuthService : IAuthService
-    {       
-        protected SemaphoreSlim _accessTokenSemaphore = new SemaphoreSlim(1, 1);
-
+    {   
         public string VerificationId { get; set; }
 
         public string VerificationError { get; set; }
@@ -19,7 +17,8 @@ namespace XamarinFB.Services
 
         protected void VerificationCompleted((bool, string) result)
         {
-            MessagingCenter.Send<IAuthService, (bool, string)>(this, "VerificationComplete", result);
+            //Pass the Message to anyone who is interested
+            MessagingCenter.Send<IAuthService, (bool, string)>(this, Constants.VerificationComplete, result);
         }
     }
 }

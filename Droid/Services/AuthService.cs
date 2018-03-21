@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
@@ -13,7 +12,13 @@ namespace XamarinFB.Droid.Services
     public class AuthService : XamarinFB.Services.BaseAuthService
     {
         VerificationCallBack verificationStateChangedCallback = new VerificationCallBack();
-
+        public AuthService()
+        {
+            verificationStateChangedCallback.OnVerificationCompletedEvent += (bool status, string token) =>
+            {
+                VerificationCompleted((status, token));
+            };
+        }
         public override async Task SendVerificationCode(string phoneNumber)
         {
             await Task.Run(() =>
@@ -22,63 +27,48 @@ namespace XamarinFB.Droid.Services
             });
         }
 
-        public override async Task VerifyPhoneNumber(string verificationId, string verificationCode)
+        public override async Task VerifyPhoneNumber(string verificationCode)
         {
-            //Credential credential = phoneAuthProvider.GetCredential(verificationId, verificationCode);
-
+            //NOT required for latest Android as the Verification will be handled automatically
         }
-    }
 
+    }
     internal class VerificationCallBack : OnVerificationStateChangedCallbacks
     {
-		public override void OnCodeSent(string verificationId, ForceResendingToken forceResendingToken)
-		{
-            base.OnCodeSent(verificationId, forceResendingToken);
-		}
+        public delegate void VerificationCompletedHandler(bool status, string token);
 
-		public override void OnCodeAutoRetrievalTimeOut(string verificationId)
-		{
-            base.OnCodeAutoRetrievalTimeOut(verificationId);
-		}
+        public event VerificationCompletedHandler OnVerificationCompletedEvent;
 
-		public async override void OnVerificationCompleted(PhoneAuthCredential credential)
+        string _verificationId = string.Empty;
+        public override void OnCodeSent(string verificationId, ForceResendingToken forceResendingToken)
         {
-            //Convert anonymous user to new user
-            if (String.IsNullOrEmpty(FirebaseAuth.Instance.CurrentUser.PhoneNumber))
-            {
-                //await FirebaseAuth.Instance.CurrentUser.LinkWithCredentialAsync(credential).ContinueWith(task =>
-                //{
-                //    if (task.IsCanceled)
-                //    {
-                //        Debug.WriteLine("LinkWithCredentialAsync was canceled.");
-                //        return;
-                //    }
-                //    if (task.IsFaulted)
-                //    {
-                //        Debug.WriteLine("LinkWithCredentialAsync encountered an error: " + task.Exception);
-                //        return;
-                //    }
+            base.OnCodeSent(verificationId, forceResendingToken);
+            _verificationId = verificationId;
+        }
 
-                //    Firebase.Auth.FirebaseUser newUser = (Firebase.Auth.FirebaseUser)task.Result;
-                //    Debug.WriteLine("Credentials successfully linked to Firebase user: {0} ({1})",
-                //                    newUser.DisplayName, newUser.Uid);
-                //});
+        public override void OnCodeAutoRetrievalTimeOut(string verificationId)
+        {
+            base.OnCodeAutoRetrievalTimeOut(verificationId);
 
-            }
-            else
+        }
+
+        public async override void OnVerificationCompleted(PhoneAuthCredential credential)
+        {
+            var authResult = await FirebaseAuth.Instance.SignInWithCredentialAsync(credential);
+            if (authResult != null)
             {
-                var authResult = await FirebaseAuth.Instance.SignInWithCredentialAsync(credential);
-                if (authResult != null)
-                {
-                    var tokenResult = await authResult.User.GetIdTokenAsync(true);
-                    Debug.WriteLine(tokenResult.Token);
-                }
+                var tokenResult = await authResult.User.GetIdTokenAsync(true);
+                Debug.WriteLine(tokenResult.Token);
+                if(OnVerificationCompletedEvent != null)
+                    OnVerificationCompletedEvent(true, tokenResult.Token);
             }
         }
 
         public override void OnVerificationFailed(FirebaseException exception)
         {
             Debug.WriteLine(exception);
-        }    
+            if (OnVerificationCompletedEvent != null)
+                OnVerificationCompletedEvent(false, exception.Message);
+        }
     }
 }

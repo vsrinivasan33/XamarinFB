@@ -16,6 +16,6 @@
 /Users/vinodsrinivasan/Projects/XamarinFB/XamarinFB/obj/Debug/XamarinFB.csproj.CoreCompileInputs.cache
 /Users/vinodsrinivasan/Projects/XamarinFB/XamarinFB/obj/Debug/XamarinFB.App.xaml.g.cs
 /Users/vinodsrinivasan/Projects/XamarinFB/XamarinFB/obj/Debug/XamarinFB.XamarinFBPage.xaml.g.cs
+/Users/vinodsrinivasan/Projects/XamarinFB/XamarinFB/obj/Debug/XamarinFB.VerifyPage.xaml.g.cs
 /Users/vinodsrinivasan/Projects/XamarinFB/XamarinFB/obj/Debug/XamarinFB.dll
 /Users/vinodsrinivasan/Projects/XamarinFB/XamarinFB/obj/Debug/XamarinFB.pdb
-/Users/vinodsrinivasan/Projects/XamarinFB/XamarinFB/obj/Debug/XamarinFB.VerifyPage.xaml.g.cs

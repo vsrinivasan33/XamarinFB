@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "50263737161-mjlm7lqte77bkg1eka2fq7jeqfgcbsia.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "au.com.vinod.xamarinfb",
+            "certificate_hash": "4a519aff6a334678dfc552df85c0e26c0c2b6faf"
+          }
+        },
+        {
           "client_id": "50263737161-5qhfpakhminj7p3u05fv8b29d1dqociq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -40,16 +48,16 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "50263737161-2i5840pkaubiek8vd9a7ljovrna946b5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
               "client_id": "50263737161-40q8p72icgj0tc6q3pj333nrl1ghvusm.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "au.com.vinod.xamarinfb",
                 "app_store_id": "1171312949"
               }
+            },
+            {
+              "client_id": "50263737161-2i5840pkaubiek8vd9a7ljovrna946b5.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },

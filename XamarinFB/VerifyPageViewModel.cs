@@ -15,6 +15,25 @@ namespace XamarinFB
             {
                 _authService = authService;
             }
+
+            MessagingCenter.Subscribe<IAuthService, (bool Status, string Result)>(this, Constants.VerificationComplete, (sender, payload) =>
+            {               
+                Result = payload.Result;
+                MessagingCenter.Unsubscribe<IAuthService, (bool, string)>(this, Constants.VerificationComplete);
+            });
+
+           PhoneNumber = Device.RuntimePlatform == Device.iOS ? "+61433286080" : "+61459862793";
+
+        }
+
+        private string _result;
+        public string Result
+        {
+            get => _result;
+            set {
+                _result = value;
+                OnPropertyChanged();
+            }
         }
 
         private string _phoneNumber;
@@ -31,13 +50,13 @@ namespace XamarinFB
         private string _verificationCode;
         public string VerificationCode
         {
-            get => _phoneNumber;
+            get => _verificationCode;
             set
             {
-                _phoneNumber = value;
+                _verificationCode = value;
                 OnPropertyChanged();
             }
-        }
+        }     
 
         private Command _sendCode;
         public Command SendCodeCommand
@@ -53,6 +72,6 @@ namespace XamarinFB
         public Command VerifyCommand
         {
             get => verify ?? (verify = new Command(() =>  _authService.VerifyPhoneNumber(VerificationCode)));
-        }
+        }       
     }
 }

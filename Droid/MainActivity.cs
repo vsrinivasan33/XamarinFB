@@ -41,9 +41,9 @@ namespace XamarinFB.Droid
                 {
                     var dynamicLink = result as PendingDynamicLinkData;
 
-                    var link = dynamicLink.Link.ToString().Split(new string[] { "https://vinod.com.au?welcome=" }, StringSplitOptions.None).LastOrDefault();
+                    var link = dynamicLink.Link.ToString().Split(new string[] { Constants.FirebaseDeepLinkUrl }, StringSplitOptions.None).LastOrDefault();
                     var welcomeMsg = link.Split(new char[] { '&' }).FirstOrDefault();
-                    MessagingCenter.Send(Xamarin.Forms.Application.Current, "Celebrate", welcomeMsg);
+                    MessagingCenter.Send(Xamarin.Forms.Application.Current, Constants.Welcome, welcomeMsg);
                 }
             }
         }

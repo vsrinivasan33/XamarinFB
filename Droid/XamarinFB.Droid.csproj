@@ -28,6 +28,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Users/vinodsrinivasan/Library/Developer/Xamarin/Keystore/Xamarin Firebase Demo Android Key/Xamarin Firebase Demo Android Key.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Test.1234</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>Xamarin Firebase Demo Android Key</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Test.1234</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +43,8 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSigningKeyStore>/Users/vinodsrinivasan/Library/Developer/Xamarin/Keystore/Xamarin Firebase Demo Android Key/Xamarin Firebase Demo Android Key.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias>Xamarin Firebase Demo Android Key</AndroidSigningKeyAlias>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
