@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "50263737161",
+    "firebase_url": "https://xamarinfb-demo.firebaseio.com",
+    "project_id": "xamarinfb-demo",
+    "storage_bucket": "xamarinfb-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50263737161:android:64724d33e52a8d02",
+        "android_client_info": {
+          "package_name": "au.com.vinod.xamarinfb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50263737161-5qhfpakhminj7p3u05fv8b29d1dqociq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "au.com.vinod.xamarinfb",
+            "certificate_hash": "7b11847842fb718bbac44523bca637e3c1a6a1c6"
+          }
+        },
+        {
+          "client_id": "50263737161-2i5840pkaubiek8vd9a7ljovrna946b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLYQwUsxvrK1LuVCGfYilCUj3dV9d48jw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50263737161-2i5840pkaubiek8vd9a7ljovrna946b5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "50263737161-40q8p72icgj0tc6q3pj333nrl1ghvusm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.vinod.xamarinfb",
+                "app_store_id": "1171312949"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

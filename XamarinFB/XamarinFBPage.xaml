@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:lottie="clr-namespace:Lottie.Forms;assembly:Lottie.Forms" xmlns:local="clr-namespace:XamarinFB" x:Class="XamarinFB.XamarinFBPage">
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="Xamarin with Firebase" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+            <StackLayout x:Name="successPanel" IsVisible="false">
+                <Label Text="Success" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="22" TextColor="Red" FontAttributes="Bold" />
+                <Label x:Name="labelProviderText" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold" />
+            </StackLayout>
+            <Grid x:Name="gridSuccess" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="false">
+                <Label Text="Success" x:Name="successLabel" HorizontalOptions="Center" VerticalOptions="Center" />
+                <!--<lottie:AnimationView Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" x:Name="successView"  Animation="celebration.json" HeightRequest="500" WidthRequest="500" Loop="true" AutoPlay="false" />-->
+            </Grid>
+            <Grid x:Name="gridEmpty" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="true">
+                <Label Text="Nothing interesting here!" x:Name="emptyLabel" HorizontalOptions="Center" VerticalOptions="Center" />
+                <!--<lottie:AnimationView  Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" x:Name="emptyView"  Animation="empty.json" HeightRequest="500" WidthRequest="500" Loop="false" AutoPlay="true" />-->
+            </Grid>
+        </StackLayout>
+        <Button x:Name="buttonContinue" Text="Continue" WidthRequest="300" VerticalOptions="End" HorizontalOptions="CenterAndExpand" />
+    </StackLayout>
+</ContentPage>
